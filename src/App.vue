@@ -7,7 +7,7 @@ const cursor = ref({ row: 0, column: 0 })
 const expressions = [
   {
     id: 'identity',
-    form: '(whoami :name "pwnjp")',
+    form: '(whoami :name "Ryosuke Shimizu")',
     result: '=> (:role "software engineer" :place "Japan")',
   },
   {
@@ -17,23 +17,43 @@ const expressions = [
   },
   {
     id: 'stack',
-    form: '(stack :uses ("Vue" "Vite" "Go" "TypeScript" "Python" "Linux"))',
-    result: '=> (:frontend "Vue/Vite" :systems "Go/Linux" :scripts "Python")',
+    form: '(stack :uses ("Python" "Golang" "Terraform"))',
+    result: '=> (:language ("Python" "Golang") :infrastructure "Terraform")',
   },
   {
-    id: 'portfolio',
-    form: '(project :name "portfolio.dsl" :state :active)',
-    result: '=> (:idea "portfolio as executable structure")',
+    id: 'skill-certifications',
+    form: '(skill :certifications)',
+    result:
+      '=> (progn\n  (certification :name "普通自動車運転免許（第一種）" :acquired "2011-08")\n  (certification :name "情報セキュリティスペシャリスト" :acquired "2014-06")\n  (certification :name "応用情報技術者" :acquired "2016-12")\n  (certification :name "基本情報技術者試験" :acquired "2018-11"))',
   },
   {
-    id: 'ctf',
-    form: '(project :name "ctf-lab" :state :research)',
-    result: '=> (:contains "writeups" "small labs" "tooling notes")',
+    id: 'pr-platform',
+    form: '(self-pr :theme "cloud-data-platform" :clients "enterprise")',
+    result:
+      '=> "大手企業向けに、クラウド環境でデータ処理基盤の構築・運用・改善に従事。大規模な社内業務システムの安定稼働と効率化に貢献しました。"',
+  },
+  {
+    id: 'pr-implementation',
+    form: '(self-pr :strength ("Python" "Go" "AWS" "Terraform"))',
+    result:
+      '=> "AWS環境下でのデータ整形・加工システムの開発、PythonやGoを用いたバックエンド実装、Terraformによるデータパイプライン構築に強みがあります。"',
+  },
+  {
+    id: 'pr-automation',
+    form: '(self-pr :automation ("ai-ops" "incident-response" "data-processing"))',
+    result:
+      '=> "AIを活用したインシデント対応の自動化システム導入経験があり、大規模データの効率的な処理と安定稼働に貢献してきました。"',
   },
   {
     id: 'contact',
-    form: '(contact :github "github.com/pwnjp" :mail "hello@pwnjp.dev")',
-    result: '=> (:status "open")',
+    form: '(contact :github "https://github.com/fvi-att")',
+    result: '=> (:github "https://github.com/fvi-att" :status "open")',
+    links: [
+      {
+        label: 'https://github.com/fvi-att',
+        href: 'https://github.com/fvi-att',
+      },
+    ],
   },
   {
     id: 'comment',
@@ -221,12 +241,22 @@ const characterClass = (character) => ({
         </button>
 
         <Transition name="eval">
-          <p
+          <div
             v-if="expression.result && openExpression === expression.id"
             class="result"
           >
-            {{ expression.result }}
-          </p>
+            <p>{{ expression.result }}</p>
+            <a
+              v-for="link in expression.links"
+              :key="link.href"
+              class="result-link"
+              :href="link.href"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {{ link.label }}
+            </a>
+          </div>
         </Transition>
       </article>
     </section>

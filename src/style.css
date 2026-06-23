@@ -110,6 +110,7 @@ button {
   color: var(--text);
   line-height: 1.5;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
   text-align: left;
   transform-origin: left center;
   transition:
@@ -163,7 +164,7 @@ button {
 }
 
 .line-text {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .paren {
@@ -184,9 +185,31 @@ button {
 .result {
   overflow-wrap: anywhere;
   grid-column: 2;
+  display: grid;
+  gap: 6px;
   padding: 6px 10px 12px 34px;
   font-size: 0.92rem;
   line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.result p {
+  margin: 0;
+}
+
+.result-link {
+  width: fit-content;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.result-link:hover,
+.result-link:focus-visible {
+  background: var(--text);
+  color: var(--bg);
+  outline: none;
 }
 
 @keyframes cursor-blink {
