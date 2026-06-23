@@ -24,7 +24,7 @@ const expressions = [
     id: 'skill-certifications',
     form: '(skill :certifications)',
     result:
-      '=> (progn\n  (certification :name "普通自動車運転免許（第一種）" :acquired "2011-08")\n  (certification :name "情報セキュリティスペシャリスト" :acquired "2014-06")\n  (certification :name "応用情報技術者" :acquired "2016-12")\n  (certification :name "基本情報技術者試験" :acquired "2018-11"))',
+      '=> (progn\n  (certification :name "普通自動車運転免許（第一種）" :acquired "2011-08")\n  (certification :name "情報セキュリティスペシャリスト" :acquired "2014-06")\n  (certification :name "応用情報技術者" :acquired "2016-12")\n  (certification :name "SANS GWAPT" :acquired "2017-12")\n  (certification :name "基本情報技術者試験" :acquired "2018-11"))',
   },
   {
     id: 'pr-platform',
